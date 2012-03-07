@@ -1,4 +1,3 @@
-#!/Applications/MAMP/bin/php/php5.3.6/bin/php
 <?php
 define('TMPDIR','tmp'.time().'/');
 

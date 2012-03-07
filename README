@@ -1,0 +1,10 @@
+# Conversión de .cbr y .cbz a carpetas de imágenes directamente legibles por un Kindle 3
+
+Básicamente se cogen todos los .jpg del archivo de cómic pasado por lista de comandos,
+se pasan a escala de grises y se redimensionan al tamaño más adecuado para el Kindle 3.
+
+De momento no se contemplan páginas dobles ni nada, la idea es ir añadiéndolo.
+
+## Uso
+
+  php manga2kindle.php archivo.cbr
