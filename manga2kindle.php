@@ -65,6 +65,19 @@ function procesaFichero($fichero) {
 	$ancho = $size[0];
 	$altoFinal = 800;
 	$anchoFinal = 600;
+	$imagen = imagecreatefromjpeg($fichero);
+
+	if ($ancho>$alto) {
+		$imagenExtra = imagecreatetruecolor($ancho,$ancho);
+		imagecopy($imagenExtra,$imagen,0,0,0,0,$ancho,$alto);
+		$imagenRotada = imagerotate($imagenExtra,90,0);
+		$imagenRecortada = imagecreatetruecolor($alto,$ancho);
+		imagecopy($imagenRecortada,$imagenRotada,0,0,0,0,$alto,$ancho);
+		$imagen = $imagenRecortada;
+		$ancho = imagesx($imagen);
+		$alto = imagesy($imagen);
+		
+	}
 	
 	if ($alto/$ancho > 4/3) {
 		//reducimos el alto 
@@ -77,7 +90,6 @@ function procesaFichero($fichero) {
 		$altoFinal = $alto/($ancho/$anchoFinal);
 	}
 
-	$imagen = imagecreatefromjpeg($fichero);
 	$imagenFinal = imagecreatetruecolor($anchoFinal,$altoFinal);
 	$copiaOK = imagecopyresampled($imagenFinal,$imagen,0,0,0,0,$anchoFinal,$altoFinal,$ancho,$alto);
 	if (!$copiaOK) {
