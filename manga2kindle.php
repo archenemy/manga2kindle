@@ -1,5 +1,7 @@
 <?php
 define('TMPDIR','tmp'.time().'/');
+define('ALTO',760);
+define('ANCHO',600);
 
 $nombreFichero = $argv[1];
 $infoFichero = pathinfo($nombreFichero);
@@ -63,8 +65,8 @@ function procesaFichero($fichero) {
 	$size = getimagesize($fichero);
 	$alto = $size[1];
 	$ancho = $size[0];
-	$altoFinal = 800;
-	$anchoFinal = 600;
+	$altoFinal = ALTO;
+	$anchoFinal = ANCHO;
 	$imagen = imagecreatefromjpeg($fichero);
 
 	if ($ancho>$alto) {
@@ -81,12 +83,12 @@ function procesaFichero($fichero) {
 	
 	if ($alto/$ancho > 4/3) {
 		//reducimos el alto 
-		$altoFinal = 800;
+		$altoFinal = ALTO;
 		$anchoFinal = $ancho/($alto/$altoFinal);
 		
 	} else {
 		// reducimos el ancho
-		$anchoFinal = 600;
+		$anchoFinal = ANCHO;
 		$altoFinal = $alto/($ancho/$anchoFinal);
 	}
 
